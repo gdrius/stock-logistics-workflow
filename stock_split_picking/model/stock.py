@@ -77,8 +77,8 @@ class StockMove(models.Model):
             moves.action_confirm()
         if move.procurement_id:
             defaults = {'product_qty': qty,
-                        'state': 'running'}
+                        'state': 'running',
+                        'move_ids': [(6, 0, [new_move.id])]}
             new_procurement = move.procurement_id.copy(default=defaults)
-            new_move.procurement_id = new_procurement
             move.procurement_id.product_qty = move.product_qty
         return new_move.id
